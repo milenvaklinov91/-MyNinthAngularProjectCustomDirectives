@@ -5,6 +5,21 @@
 <!-- This is how we have created a custom Attribute  directive and uses it in div and h1 element -->
 
 <!-- setBackground -->
-<div appHighlight>
+<div appHighlight appHover> <!-- @HostListener this div element is host -->
   <p>This is demo HTML content to understand custom attribute directive in Angular.</p>
 </div>
+
+<div class="container" [appBetterhighlight] = "'red'" [defaultColor]="'yellow'"
+[title]="'Example title'" >
+                <!-- @HostBinding this div element is host -->
+  <!-- So now we are passing the value for background color from our component -->
+  <p>This is demo HTML content to understand HostBinding in Angular.</p>
+</div>
+
+<div  [appClass]="{container: true, 'change-font': true}" >
+  <p>This is demo HTML content to understand how to create custom ngClass directive in Angular.</p>
+</div>
+
+<!-- We have created custom ngClass Directive and we called ot appClass -->
+<!-- Using this custom appClass Directive we are able to set css classes
+       for a given html element based on a given condition -->
