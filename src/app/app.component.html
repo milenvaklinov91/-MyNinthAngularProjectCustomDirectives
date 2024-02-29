@@ -23,3 +23,60 @@
 <!-- We have created custom ngClass Directive and we called ot appClass -->
 <!-- Using this custom appClass Directive we are able to set css classes
        for a given html element based on a given condition -->
+
+<!-- <div class="container" [ngStyle]="{backgroundColor: 'pink', color: 'white'}"> -->
+<!-- <div class="container" appStyle [setStyle]="{backgroundColor: 'pink', color: 'white', fontWeight: 'bold'}"> -->
+<!-- <div class="container" [appStyle] ="{backgroundColor: 'pink', color: 'white', fontWeight: 'bold'}"> -->
+<div class="container" [appStyle] ="{backgroundColor: active ? 'Green' : 'Red', color: 'white', fontWeight: 'bold'}">
+  <!-- We need to use the selector appStyle infrond of [setStyle],because Angular doesn't know where to look for this property
+  When we use this propery (appStyle),Angular will first look for this propery in this style.directive.ts (class),
+  otherwise it will looks for this property in this <div> element -->
+
+  <!-- We have to assign an OBJECT to this ngStyle,then we need to have some properties and a value for that property -->
+  <!-- Now the propery here will be a css style property,that backgroundColor is the property name for this OBJECT -->
+
+  <p>This is demo HTML content to understand how to create custom ngStyle directive in Angular.</p>
+</div>
+<!-- So here we are adding some css style for this div element using ngStyle directive and we assigned an OBJECT to it -->
+<!-- and the property for this OBJECT is the css propery -->
+
+<button class="btn btn-notice" (click)="DisplayNotice()">Show notice</button>
+<!-- <div class="info-container notice" *ngIf="display; else myVar"> -->
+<!-- <div class="info-container notice" *appIf="display"> -->
+<div class="info-container notice" *appIf="display">
+  <!-- When we use * before directive name,it tells Angular that this directive is a structural directive -->
+  <!-- Angular behind the scenes for that structural directive,Angular creates a template -->
+    <!-- Something like this:
+    <ng-templete [ngIf]="display" [ngIfElse]="myVar">
+      <div class="info-container notice">
+      <h3>This is important notice!</h3>
+    <p>This is a notice issued for all website users.</p>
+  </div>
+    </ng-templete> -->
+    <!-- <ng-template #myVar>
+      <p>
+        This is an example paragraph.
+      </p>
+    </ng-template> -->
+    <!-- It will works in same way! -->
+  <h3>This is important notice!</h3>
+    <p>This is a notice issued for all website users.</p>
+</div>
+<p *appIf="10 > 5">This is a demo paragraph!</p>
+<!-- <ng-template #myVar> if ngIf = false
+  <p>
+    This is an example paragraph.
+  </p>
+</ng-template> -->
+
+<div class="container" [ngSwitch]="occupation">
+  <p *ngSwitchCase="'teacher'">This paragraph will be displayed when occupation is teacher.</p>
+  <p *ngSwitchCase="'designer'">This paragraph will be displayed when occupation is designer.</p>
+  <p *ngSwitchCase="'lawyer'">This paragraph will be displayed when occupation is lawyer.</p>
+  <p *ngSwitchDefault>This paragraph is default and will be displayed if no case matches switch expression</p>
+</div>
+
+<!-- When we use a Structural Directive with an * before it,internally Angular
+creates a template and on that template it uses that Structural Directive
+just like any other attribute directive and it wraps the view within that template!
+The vieew which we want to deplay or remove from the dom! -->
